@@ -22,7 +22,7 @@ L = 10000;
 meanPtx_dB = 10;
 
 % Transmit Power Calculation
-meanPtx = % ToDo
+meanPtx = 10^(meanPtx_dB/10);% ToDo
 
 % Per Channel Transmit Power Calculation
 Ptx = zeros(L,no_N);
@@ -43,7 +43,8 @@ for n=1:no_N % loop for antenna number
 
     % Per Channel Transmit Powers for Average Power Constraint
     % ToDo
-
+    [~, powers] = averageRate_averagePtx(Phi, meanPtx);
+    Ptx(:,n) = transpose(powers);
 end
 
 % Create empirical CDF Plots for the per Channel Transmit Powers
