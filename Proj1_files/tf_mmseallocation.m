@@ -38,4 +38,4 @@ psi = zeros(size(phi));
 psi(1:K) = mu./sqrt(phi(1:K)) - 1./phi(1:K);
 
 % Compute achievable rate
-R = sum(log(1+phi.*psi));
+R = sum(log2(1+phi.*psi));

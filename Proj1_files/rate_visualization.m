@@ -31,11 +31,11 @@ R_tf_mmse      = zeros(1,no_Ptx);
 for i = 1:no_Ptx
     % Waterfilling
     [psi,~,~] = waterfilling(phi,Ptx(i));
-    R_waterfilling(i) = sum(log(1+phi.*psi));
+    R_waterfilling(i) = sum(log2(1+phi.*psi));
     
     % Uniform
     [psi,~] = uniform_rate(phi,Ptx(i));
-    R_uniform(i) = sum(log(1+phi.*psi));
+    R_uniform(i) = sum(log2(1+phi.*psi));
     
     % MMSE    
     R_tf_mmse(i) = tf_mmseallocation(H, Cn, Ptx(i));
@@ -58,11 +58,11 @@ switch_R_uniform = zeros(N-1,1);
 for K = 1:N-1
     % Waterfilling
     [psi,~,~] = waterfilling(phi,switch_Ptx_waterfilling(K));
-    switch_R_waterfilling(K) = sum(log(1+phi.*psi));
+    switch_R_waterfilling(K) = sum(log2(1+phi.*psi));
     
     % Uniform
     [psi,~] = uniform_rate(phi,switch_Ptx_uniform(K));
-    switch_R_uniform(K) = sum(log(1+phi.*psi));
+    switch_R_uniform(K) = sum(log2(1+phi.*psi));
 end
 
 % Plotting the achievable rates over Ptx in dB

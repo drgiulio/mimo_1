@@ -22,7 +22,7 @@ N = length(phi);
 R_K = zeros(size(phi));
 for K = 1:N
     % Compute achievable data rate for current K
-    R_K(K) = sum(log(1+Ptx*phi(1:K)/K));
+    R_K(K) = sum(log2(1+Ptx*phi(1:K)/K));
 end
 
 % Get optimal K: maximum R_K
