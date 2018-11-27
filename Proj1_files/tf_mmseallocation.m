@@ -13,7 +13,7 @@ function [ R ] = tf_mmseallocation( H, Cn, Ptx )
 
 
 % TODO
-
+%{
 % Sort eigenvalues of of H' * C_n^-1 * H decreasingly
 phi = sort(real(eig(H' * (Cn \ H))),'descend');
 
@@ -39,3 +39,15 @@ psi(1:K) = mu./sqrt(phi(1:K)) - 1./phi(1:K);
 
 % Compute achievable rate
 R = sum(log2(1+phi.*psi));
+%}
+
+% Compute equalizer constant g
+mat_factor = H' * H + trace(Cn) * eye(size(H,2)) / Ptx;
+g_abs_squared = trace((mat_factor\  H')  * (H / mat_factor)) / Ptx;
+g = sqrt(g_abs_squared);
+
+% Compute precoder
+T = (mat_factor \ H') / g;
+
+% Compute achievable rate
+R = real(log2(det(eye(size(H,2)) + H' * (Cn \ H) * (T * T'))));
