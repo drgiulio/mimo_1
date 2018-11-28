@@ -13,6 +13,6 @@ L = size(Phi,2);
 
 % Compute waterfilling solutions for every realization
 for l = 1:L
-    Psi(:,l) = waterfilling(sort(real(Phi(:,l)),'descend'), sum(max(zeros(N,1), 1/(log(2)*lambda) - 1./Phi(:,l))));
+    Psi(:,l) = waterfilling(Phi(:,l), sum(max(zeros(N,1), 1/(log(2)*lambda) - 1./Phi(:,l))));
 end
 

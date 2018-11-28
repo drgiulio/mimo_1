@@ -21,7 +21,8 @@ K = zeros(1,L);
 
 % Compute waterfilling solution for every channel realization
 for l = 1:L
-    [Psi(:,l),~,K(l)] = waterfilling(sort(real(Phi(:,l)),'descend'),averagePtx);
+    % compute solution
+    [Psi(:,l),~,K(l)] = waterfilling(Phi(:,l),averagePtx);
 end
 
 % Compute average achievable rate

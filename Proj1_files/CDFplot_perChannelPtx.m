@@ -39,6 +39,8 @@ for n=1:no_N % loop for antenna number
     for no=1:L
         % Load channels from file
         Phi(:,no) = real(eig(H(:,:,no)'*H(:,:,no)));
+        % sort
+        Phi(:,no) = sort(real(Phi(:,no)),'descend');
     end
 
     % Per Channel Transmit Powers for Average Power Constraint

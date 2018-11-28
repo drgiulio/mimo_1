@@ -42,6 +42,8 @@ for n=1:no_Narr % loop for antenna number
     Phi = NaN(N,L);
     for no=1:L
         Phi(:,no) = real(eig(H(:,:,no)'*H(:,:,no)));
+        % sort
+        Phi(:,no) = sort(real(Phi(:,no)),'descend');
     end
     
     % Large system approximation
